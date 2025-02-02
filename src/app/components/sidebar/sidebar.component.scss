@@ -1,0 +1,12 @@
+mat-nav-list {
+  padding: 30px 20px 0 4px;
+}
+
+mat-icon, span {
+  color: white;
+}
+
+.active-link mat-icon,
+.active-link span {
+  color: #f4c93f;
+}

@@ -1,0 +1,86 @@
+<h1>Product List</h1>
+<p>Review and manage the products available on the marketplace.</p>
+
+@if (error) {
+  <p>{{ error }}</p>
+} @else {
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput [formControl]="searchQuery" />
+    <button mat-button matSuffix class="search-button">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="mat-elevation-z8 container">
+    <table mat-table [dataSource]="products" class="table">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef class="custom-header">Image</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="image-placeholder">
+            @if (element.image) {
+              <img [src]="element.image" />
+            }
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="custom-header">Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef class="custom-header">Category</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.category }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="custom-header">Price</th>
+        <td mat-cell *matCellDef="let element">
+          {{ "$" + element.price }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef class="custom-header">Country</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.country }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="marketplace status">
+        <th mat-header-cell *matHeaderCellDef class="custom-header">Marketplace Status</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.marketplaceStatus }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="custom-header">Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab class="button-action">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab class="button-action">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="totalItems"
+      [pageSize]="itemsPerPage"
+      [pageSizeOptions]="[5, 10, 15]"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
+  <button mat-raised-button class="button-submit">SUBMIT</button>
+}

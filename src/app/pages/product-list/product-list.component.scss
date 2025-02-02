@@ -22,8 +22,10 @@ mat-form-field {
 
 .container {
   margin-bottom: 54px;
+  font-size: 15px;
 
-  th, td {
+  th,
+  td {
     border: 1px solid #9a9fa7;
   }
 
@@ -31,6 +33,11 @@ mat-form-field {
     font-weight: 500;
     background-color: #363f4f;
     color: white;
+  }
+
+  th.mat-column-action,
+  td.mat-column-action {
+    width: 140px;
   }
 
   .button-action {
@@ -45,7 +52,7 @@ mat-form-field {
   .image-placeholder {
     height: 50px;
     width: 50px;
-    margin: 10px 30px;
+    margin: 10px;
     background-color: gray;
 
     img {
